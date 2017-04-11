@@ -4,8 +4,8 @@ import java.text.MessageFormat;
 
 import com.gojek.carparking.common.CommonConstant;
 import com.gojek.carparking.domain.Car;
-import com.gojek.carparking.storage.GoJekParkingSearchMap;
 import com.gojek.carparking.storage.GoJekParkingSpace;
+import com.gojek.carparking.util.GoJekSearchMapUpdateUtil;
 import com.gojek.carparking.vo.ParkingParameter;
 
 public class GoJekLeaveParkingService implements GoJekParkingService {
@@ -23,9 +23,8 @@ public class GoJekLeaveParkingService implements GoJekParkingService {
 			}
 
 			GoJekParkingSpace.getAvailableSlotList().set(slot - 1, null);
-
-			GoJekParkingSearchMap.getSlotRegistrationNoMap().remove(car.getRegistrationNo());
-			GoJekParkingSearchMap.getColorLotMap().get(car.getColor()).remove(slot);
+			
+			GoJekSearchMapUpdateUtil.leaveCarFromParkingLot(car, slot);
 
 			System.out.println(MessageFormat.format(CommonConstant.SLOT_FREE, slot));
 

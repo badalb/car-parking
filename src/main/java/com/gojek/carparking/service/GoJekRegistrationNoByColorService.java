@@ -11,7 +11,6 @@ public class GoJekRegistrationNoByColorService implements GoJekParkingService {
 		String color = param.getValue()[1];
 
 		GoJekParkingSearchMap.getColorLotMap().get(color).forEach(slot -> {
-
 			System.out.println(GoJekParkingSpace.getAvailableSlotList().get(slot).getRegistrationNo());
 		});
 	}

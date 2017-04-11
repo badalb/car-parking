@@ -22,10 +22,16 @@ public class GoJekParkingSearchMap {
 	}
 
 	public static Map<String, Integer> getSlotRegistrationNoMap() {
+		if (slotRegistrationNoMap == null) {
+			initializeSearchMap();
+		}
 		return slotRegistrationNoMap;
 	}
 
 	public static Map<String, List<Integer>> getColorLotMap() {
+		if (colorLotMap == null) {
+			initializeSearchMap();
+		}
 		return colorLotMap;
 	}
 

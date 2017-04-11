@@ -32,7 +32,7 @@ public class GoJekRegistrationNoByColorServiceTest {
 		param.setValue(new String[] { "registration_numbers_for_cars_with_colour", "White" });
 		regNoByColorService.doAction(param);
 
-		param.setValue(new String[] { "registration_numbers_for_cars_with_colour", "Blue" });
+		param.setValue(new String[] { "registration_numbers_for_cars_with_colour", "White" });
 		regNoByColorService.doAction(param);
 	}
 
