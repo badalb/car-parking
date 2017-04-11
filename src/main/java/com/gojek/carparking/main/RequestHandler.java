@@ -18,6 +18,9 @@ public class RequestHandler {
 	private static Map<String, GoJekParkingService> commandMap;
 
 	public static void handleRequest(String action, String[] values) {
+		if (commandMap == null) {
+			prepareCommandMap();
+		}
 		GoJekParkingService service = commandMap.get(action);
 		ParkingParameter param = new ParkingParameter();
 		param.setValue(values);

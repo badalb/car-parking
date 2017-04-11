@@ -10,8 +10,6 @@ public class CommandFileParser {
 
 	public static void parseInputFile(String filePath) {
 
-		RequestHandler.prepareCommandMap();
-
 		File inputFile = new File(filePath);
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(inputFile));
