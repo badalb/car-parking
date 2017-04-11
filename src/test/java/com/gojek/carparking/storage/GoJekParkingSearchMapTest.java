@@ -1,15 +1,14 @@
 package com.gojek.carparking.storage;
 
+import static org.junit.Assert.assertTrue;
+
 import java.util.Map;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-import com.gojek.carparking.domain.Car;
-
-public class GoJekParkingLotTest {
+public class GoJekParkingSearchMapTest {
 
 	@Before
 	public void setUp() throws Exception {
@@ -21,7 +20,8 @@ public class GoJekParkingLotTest {
 
 	@Test
 	public void testGetSlotCarMap() {
-		Map<Integer, Car> slotCarMap = GoJekParkingLot.getSlotCarMap();
+		GoJekParkingSearchMap.initializeSearchMap();
+		Map<String, Integer> slotCarMap = GoJekParkingSearchMap.getSlotRegistrationNoMap();
 		assertTrue(slotCarMap.isEmpty() == true);
 	}
 

@@ -21,6 +21,7 @@ public class RequestHandler {
 		if (commandMap == null) {
 			prepareCommandMap();
 		}
+		
 		GoJekParkingService service = commandMap.get(action);
 		ParkingParameter param = new ParkingParameter();
 		param.setValue(values);

@@ -3,7 +3,8 @@ package com.gojek.carparking.service;
 import java.text.MessageFormat;
 
 import com.gojek.carparking.common.CommonConstant;
-import com.gojek.carparking.storage.GoJekParkingAvailablity;
+import com.gojek.carparking.storage.GoJekParkingSearchMap;
+import com.gojek.carparking.storage.GoJekParkingSpace;
 import com.gojek.carparking.vo.ParkingParameter;
 
 public class GoJekParkingLotService implements GoJekParkingService {
@@ -13,7 +14,8 @@ public class GoJekParkingLotService implements GoJekParkingService {
 		try {
 
 			Integer capacity = Integer.valueOf((String) param.getValue()[1]);
-			GoJekParkingAvailablity.createSlotList(capacity);
+			GoJekParkingSpace.createSlotList(capacity);
+			GoJekParkingSearchMap.initializeSearchMap();
 			System.out.println(MessageFormat.format(CommonConstant.PARKING_LOT_CREATED, capacity));
 
 		} catch (NumberFormatException e) {

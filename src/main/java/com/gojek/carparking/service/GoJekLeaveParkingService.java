@@ -4,8 +4,8 @@ import java.text.MessageFormat;
 
 import com.gojek.carparking.common.CommonConstant;
 import com.gojek.carparking.domain.Car;
-import com.gojek.carparking.storage.GoJekParkingAvailablity;
-import com.gojek.carparking.storage.GoJekParkingLot;
+import com.gojek.carparking.storage.GoJekParkingSearchMap;
+import com.gojek.carparking.storage.GoJekParkingSpace;
 import com.gojek.carparking.vo.ParkingParameter;
 
 public class GoJekLeaveParkingService implements GoJekParkingService {
@@ -15,14 +15,18 @@ public class GoJekLeaveParkingService implements GoJekParkingService {
 
 		try {
 			Integer slot = Integer.parseInt(param.getValue()[1]);
-			Car car = GoJekParkingLot.getSlotCarMap().get(slot - 1);
+			Car car = GoJekParkingSpace.getAvailableSlotList().get(slot - 1);
+
 			if (car == null) {
 				System.out.println(CommonConstant.NOT_FOUND);
 				return;
 			}
 
-			GoJekParkingLot.getSlotCarMap().remove(slot - 1);
-			GoJekParkingAvailablity.getAvailableSlotList().set(slot - 1, Integer.valueOf(0));
+			GoJekParkingSpace.getAvailableSlotList().set(slot - 1, null);
+
+			GoJekParkingSearchMap.getSlotRegistrationNoMap().remove(car.getRegistrationNo());
+			GoJekParkingSearchMap.getColorLotMap().get(car.getColor()).remove(slot);
+
 			System.out.println(MessageFormat.format(CommonConstant.SLOT_FREE, slot));
 
 		} catch (NumberFormatException ex) {

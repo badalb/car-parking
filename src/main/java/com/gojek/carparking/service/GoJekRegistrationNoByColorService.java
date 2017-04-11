@@ -1,6 +1,7 @@
 package com.gojek.carparking.service;
 
-import com.gojek.carparking.storage.GoJekParkingLot;
+import com.gojek.carparking.storage.GoJekParkingSearchMap;
+import com.gojek.carparking.storage.GoJekParkingSpace;
 import com.gojek.carparking.vo.ParkingParameter;
 
 public class GoJekRegistrationNoByColorService implements GoJekParkingService {
@@ -9,11 +10,9 @@ public class GoJekRegistrationNoByColorService implements GoJekParkingService {
 	public void doAction(ParkingParameter param) {
 		String color = param.getValue()[1];
 
-		GoJekParkingLot.getSlotCarMap().forEach((key, value) -> {
+		GoJekParkingSearchMap.getColorLotMap().get(color).forEach(slot -> {
 
-			if (value.getColor().equalsIgnoreCase(color)) {
-				System.out.println(value.getRegistrationNo());
-			}
+			System.out.println(GoJekParkingSpace.getAvailableSlotList().get(slot).getRegistrationNo());
 		});
 	}
 

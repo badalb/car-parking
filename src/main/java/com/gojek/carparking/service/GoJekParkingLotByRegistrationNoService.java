@@ -1,10 +1,7 @@
 package com.gojek.carparking.service;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.gojek.carparking.common.CommonConstant;
-import com.gojek.carparking.storage.GoJekParkingLot;
+import com.gojek.carparking.storage.GoJekParkingSearchMap;
 import com.gojek.carparking.vo.ParkingParameter;
 
 public class GoJekParkingLotByRegistrationNoService implements GoJekParkingService {
@@ -13,18 +10,12 @@ public class GoJekParkingLotByRegistrationNoService implements GoJekParkingServi
 	public void doAction(ParkingParameter param) {
 
 		String registrationNo = param.getValue()[1];
-		List<Integer> result = new ArrayList<>();
+		Integer result = GoJekParkingSearchMap.getSlotRegistrationNoMap().get(registrationNo);
 
-		GoJekParkingLot.getSlotCarMap().forEach((key, value) -> {
-			if (value.getRegistrationNo().equalsIgnoreCase(registrationNo)) {
-				result.add(key + 1);
-			}
-		});
-
-		if (result.isEmpty()) {
+		if (result == null) {
 			System.out.println(CommonConstant.NOT_FOUND);
 		} else {
-			System.out.println(result.get(0));
+			System.out.println(result+1);
 		}
 
 	}
