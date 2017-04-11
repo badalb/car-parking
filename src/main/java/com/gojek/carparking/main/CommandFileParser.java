@@ -30,7 +30,7 @@ public class CommandFileParser {
 	}
 
 	public static void parseTextInput(String params) {
-		RequestHandler.handleRequest(params.split(" ")[0], params.split(" "));
+		RequestHandler.handleRequest(params.split(" ")[0].toLowerCase(), params.split(" "));
 
 	}
 
