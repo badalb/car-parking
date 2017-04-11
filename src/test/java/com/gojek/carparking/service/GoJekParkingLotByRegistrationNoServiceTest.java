@@ -11,11 +11,14 @@ public class GoJekParkingLotByRegistrationNoServiceTest {
 	private GoJekParkingLotByRegistrationNoService lotByRegNoService;
 
 	private GoJekParkACarService parkingService;
+	
+	private GoJekParkingLotService lotService;
 
 	@Before
 	public void setUp() throws Exception {
 		parkingService = new GoJekParkACarService();
 		lotByRegNoService = new GoJekParkingLotByRegistrationNoService();
+		lotService = new GoJekParkingLotService();
 	}
 
 	@After
@@ -24,7 +27,12 @@ public class GoJekParkingLotByRegistrationNoServiceTest {
 
 	@Test
 	public void testDoAction() {
+		
 		ParkingParameter param = new ParkingParameter();
+		param.setValue(new String[] { "create_parking_lot", "6" });
+		lotService.doAction(param);
+	
+		
 		param.setValue(new String[] { "park", "KA-01-HH-1234", "White" });
 		parkingService.doAction(param);
 

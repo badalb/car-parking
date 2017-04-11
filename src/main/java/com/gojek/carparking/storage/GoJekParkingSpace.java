@@ -8,7 +8,7 @@ import com.gojek.carparking.domain.Car;
 
 public class GoJekParkingSpace {
 
-	private static int MAX_DEFAULT_SIZE = 1;
+	//private static int MAX_DEFAULT_SIZE = 1;
 
 	private static List<Car> availableSlotList;
 
@@ -25,9 +25,10 @@ public class GoJekParkingSpace {
 	}
 
 	public static List<Car> getAvailableSlotList() {
-		if (availableSlotList == null) {
-			return createSlotList(MAX_DEFAULT_SIZE);
-		}
+//		if (availableSlotList == null) {
+//			System.out.println("Initializing..........");
+//			return createSlotList(MAX_DEFAULT_SIZE);
+//		}
 		return availableSlotList;
 	}
 }

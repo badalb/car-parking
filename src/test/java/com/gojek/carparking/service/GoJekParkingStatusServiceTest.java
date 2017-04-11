@@ -11,6 +11,8 @@ public class GoJekParkingStatusServiceTest {
 	private GoJekParkingStatusService parkingStatusService;
 
 	private GoJekParkACarService parkingService;
+	
+	private GoJekParkingLotService lotService;
 
 	@Before
 	public void setUp() throws Exception {
@@ -18,6 +20,8 @@ public class GoJekParkingStatusServiceTest {
 		parkingService = new GoJekParkACarService();
 
 		parkingStatusService = new GoJekParkingStatusService();
+		
+		lotService = new GoJekParkingLotService();
 	}
 
 	@After
@@ -26,7 +30,10 @@ public class GoJekParkingStatusServiceTest {
 
 	@Test
 	public void testDoAction() {
+		
 		ParkingParameter param = new ParkingParameter();
+		param.setValue(new String[] { "create_parking_lot", "6" });
+		lotService.doAction(param);
 
 		param.setValue(new String[] { "status" });
 		parkingStatusService.doAction(param);

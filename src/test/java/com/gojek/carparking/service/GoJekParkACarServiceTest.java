@@ -8,12 +8,14 @@ import com.gojek.carparking.vo.ParkingParameter;
 
 public class GoJekParkACarServiceTest {
 
+	private GoJekParkingLotService lotService;
+	
 	private GoJekParkACarService service;
 
 	@Before
 	public void setUp() throws Exception {
 		service = new GoJekParkACarService();
-
+		lotService = new GoJekParkingLotService();
 	}
 
 	@After
@@ -22,7 +24,11 @@ public class GoJekParkACarServiceTest {
 
 	@Test
 	public void testDoAction() {
+		
 		ParkingParameter param = new ParkingParameter();
+		param.setValue(new String[] { "create_parking_lot", "6" });
+		lotService.doAction(param);
+	
 		param.setValue(new String[] { "park", "KA-01-HH-1234", "White" });
 		service.doAction(param);
 	}
